@@ -240,7 +240,7 @@
 
             const temp = 23 + Math.sin(time * 0.1) * 2 + (Math.random() - 0.5) * 1.5;
             const hum = 60 + Math.sin(time * 0.05) * 10 + (Math.random() - 0.5) * 5;
-            const pressure = 101325 - (100 - alt) * 12 + (Math.random() - 0.5) * 50;
+            const pressure = 1016 - (100 - alt) * 12 + (Math.random() - 0.5) * 50;
             const speed = Math.max(0, (100 - alt) * 0.08 + (Math.random() - 0.5) * 1.5);
             const accel = 9.8 + (Math.random() - 0.5) * 2;
             const vib = Math.random() * 2 + Math.sin(time * 0.5) * 0.5;
@@ -370,8 +370,8 @@
             startSimulation();
 
             // También puedes probar con simulación por defecto:
-            console.log('🚀 HYDRONAUTAS MX - Estación Terrena iniciada');
-            console.log('📡 Usando simulación de datos. Cambia a WebSocket o HTTP para conectar con ESP32.');
+            console.log(' POLARIX - Estación Terrena iniciada');
+            console.log(' Usando simulación de datos. Cambia a WebSocket o HTTP para conectar con ESP32.');
         }
 
         // Ejecutar al cargar la página
