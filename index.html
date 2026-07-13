@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASPIRAL - Estación Terrena CANSAT</title>
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+   <link rel="stylesheet" href="Puebla_CS.css">
+   <script src="Puebla_JS.js" defer></script>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <h1> ASPIRAL</h1>
+            <div class="status-indicator">
+                <span id="connectionStatus" style="font-size:13px; color:#7a8ba3;">Conectando...</span>
+                <span class="led" id="statusLed"></span>
+            </div>
+            <div class="header-info">
+                <span><strong>Misión:</strong> CANSAT Rover</span>
+                <span><strong>Estación:</strong> Matamoros</span>
+                <span id="packetCounter"><strong>Paquetes:</strong> 0</span>
+                <span id="lastUpdate"><strong>Última:</strong> --:--:--</span>
+            </div>
+        </header>
+
+        <!-- MÉTRICAS EN TIEMPO REAL -->
+        <section class="metrics-grid" id="metricsGrid">
+            <div class="metric-card">
+                <div class="label">🌡️ Temperatura</div>
+                <div class="value temperature" id="tempValue">--</div>
+                <div class="unit">°C</div>
+                <div class="scientific" id="tempSci">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">💧 Humedad</div>
+                <div class="value humidity" id="humValue">--</div>
+                <div class="unit">%</div>
+                <div class="scientific" id="humSci">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">📊 Presión</div>
+                <div class="value pressure" id="presValue">--</div>
+                <div class="unit">Pa</div>
+                <div class="scientific" id="presSci">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">📏 Altitud</div>
+                <div class="value altitude" id="altValue">--</div>
+                <div class="unit">m</div>
+                <div class="scientific" id="altSci">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">💨 Velocidad</div>
+                <div class="value speed" id="speedValue">--</div>
+                <div class="unit">m/s</div>
+                <div class="scientific" id="speedSci">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">⚡ Aceleración</div>
+                <div class="value accel" id="accelValue">--</div>
+                <div class="unit">m/s²</div>
+                <div class="scientific" id="accelSci">--</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">📳 Vibración</div>
+                <div class="value vibration" id="vibValue">--</div>
+                <div class="unit">m/s²</div>
+                <div class="scientific" id="vibSci">--</div>
+            </div>
+            <div class="metric-card" style="grid-column: span 1;">
+                <div class="label">📍 GPS</div>
+                <div class="value gps" id="gpsValue">--</div>
+                <div class="unit" style="font-size:11px;">Lat / Lon</div>
+            </div>
+        </section>
+
+        <!-- GRÁFICOS -->
+        <section class="charts-row">
+            <div class="chart-box">
+                <h3>📈 Altitud vs Tiempo</h3>
+                <canvas id="altChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>🌡️ Temperatura vs Tiempo</h3>
+                <canvas id="tempChart"></canvas>
+            </div>
+        </section>
+
+        <section class="charts-row">
+            <div class="chart-box">
+                <h3>💨 Velocidad vs Tiempo</h3>
+                <canvas id="speedChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>📳 Vibración vs Tiempo</h3>
+                <canvas id="vibChart"></canvas>
+            </div>
+        </section>
+
+        <!-- TABLA DE DATOS HISTÓRICOS -->
+        <section class="table-section">
+            <h3>
+                📋 Registro de Telemetría
+                <span class="badge" id="rowCount">0 registros</span>
+            </h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tiempo (s)</th>
+                            <th>Altitud (m)</th>
+                            <th>Temp (°C)</th>
+                            <th>Humedad (%)</th>
+                            <th>Presión (Pa)</th>
+                            <th>Velocidad (m/s)</th>
+                            <th>Aceleración (m/s²)</th>
+                            <th>Vibración (m/s²)</th>
+                            <th>GPS (Lat/Lon)</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Filas generadas dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <strong>POLARIX</strong> — Instituto Tecnológico de Matamoros &bull;
+            CANSAT 2026 &bull;
+        </footer>
+
+    </div>
+</body>
+</html>
